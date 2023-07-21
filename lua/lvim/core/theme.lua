@@ -19,8 +19,7 @@ M.config = function()
             fg = c.blue1,
           }
           hl.TSTagDelimiter = {
-            fg = c.dark5,
-          }
+            fg = c.dark5, }
         end,
         style = "night", -- The theme comes in three styles, `storm`, a darker variant `night` and `day`
         transparent = lvim.transparent_window, -- Enable this to disable setting the background color

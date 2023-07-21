@@ -229,6 +229,7 @@ M.config = function()
         name = "copilot",
         -- keyword_length = 0,
         max_item_count = 3,
+
         trigger_characters = {
           {
             ".",
