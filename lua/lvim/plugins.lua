@@ -1,11 +1,79 @@
 -- local require = require("lvim.utils.require").require
 local core_plugins = {
-    { "folke/lazy.nvim",                 tag = "stable" },
+    { "folke/lazy.nvim",   tag = "stable" },
     {
         "neovim/nvim-lspconfig",
         lazy = true,
         dependencies = { "mason-lspconfig.nvim", "nlsp-settings.nvim" },
     },
+    -- {
+    --     'leoluz/nvim-dap-go',
+    --     config = function ()
+    --        require("nvim-dap-go").setup()
+    --     end
+    -- },
+    {
+        "tzachar/cmp-tabnine",
+        build = "./install.sh",
+        dependencies = "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
+    },
+    {
+        "folke/trouble.nvim",
+        cmd = "TroubleToggle",
+    },
+    {
+        "iamcco/markdown-preview.nvim",
+        build = "cd app && npm install",
+        ft = "markdown",
+        config = function()
+            vim.g.mkdp_auto_start = 1
+        end,
+    },
+    -- {
+    --     "felipec/vim-sanegx",
+    --     event = "BufRead",
+    -- },
+    {
+        "ray-x/lsp_signature.nvim",
+        event = "BufRead",
+        config = function() require "lsp_signature".on_attach() end,
+    },
+    {
+        "andymass/vim-matchup",
+        event = "CursorMoved",
+        config = function()
+            vim.g.matchup_matchparen_offscreen = { method = "popup" }
+        end,
+    },
+    {
+        "sindrets/diffview.nvim",
+        event = "BufRead",
+    },
+    {
+        "f-person/git-blame.nvim",
+        event = "BufRead",
+        config = function()
+            vim.cmd "highlight default link gitblame SpecialComment"
+            vim.g.gitblame_enabled = 0
+        end,
+    },
+    {
+        "norcalli/nvim-colorizer.lua",
+        config = function()
+            require("colorizer").setup({ "css", "scss", "html", "javascript" }, {
+                RGB = true,      -- #RGB hex codes
+                RRGGBB = true,   -- #RRGGBB hex codes
+                RRGGBBAA = true, -- #RRGGBBAA hex codes
+                rgb_fn = true,   -- CSS rgb() and rgba() functions
+                hsl_fn = true,   -- CSS hsl() and hsla() functions
+                css = true,      -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+                css_fn = true,   -- Enable all CSS *functions*: rgb_fn, hsl_fn
+            })
+        end,
+    },
+    -- enable treesitter integration
+    -- lvim.builtin.treesitter.matchup.enable = true
     {
         "williamboman/mason-lspconfig.nvim",
         cmd = { "LspInstall", "LspUninstall" },
@@ -20,26 +88,26 @@ local core_plugins = {
         event = "User FileOpened",
         dependencies = "mason.nvim",
     },
-    {
-        "theHamsta/nvim-dap-virtual-text",
-        config = function ()
-            require("nvim-dap-virtual-text").setup({
-            enabled = true,
-            enable_commands = true,
-            highlight_changed_variables = true,
-            highlight_new_as_changed = false,
-            show_stop_reason = true,
-            commented = false,
-            only_first_definition = true,
-            all_references = false,
-            filter_references_pattern = '<module',
-            virt_text_pos = 'eol',
-            all_frames = false,
-            virt_lines = false,
-            virt_text_win_col = nil
-            })
-        end
-    },
+    -- {
+    --     "theHamsta/nvim-dap-virtual-text",
+    --     config = function()
+    --         require("nvim-dap-virtual-text").setup({
+    --             enabled = true,
+    --             enable_commands = true,
+    --             highlight_changed_variables = true,
+    --             highlight_new_as_changed = false,
+    --             show_stop_reason = true,
+    --             commented = false,
+    --             only_first_definition = true,
+    --             all_references = false,
+    --             filter_references_pattern = '<module',
+    --             virt_text_pos = 'eol',
+    --             all_frames = false,
+    --             virt_lines = false,
+    --             virt_text_win_col = nil
+    --         })
+    --     end
+    -- },
     { "tamago324/nlsp-settings.nvim",    cmd = "LspSettings", lazy = true },
     { "jose-elias-alvarez/null-ls.nvim", lazy = true },
     {
@@ -127,7 +195,7 @@ local core_plugins = {
                 height = 15,              -- Height of the floating window
                 default_mappings = false, -- Bind default mappings
                 debug = false,            -- Print debug information
-                opacity = 90,            -- 0-100 opacity level of the floating window where 100 is fully transparent.
+                opacity = 90,             -- 0-100 opacity level of the floating window where 100 is fully transparent.
                 post_open_hook = nil,     -- A function taking two arguments, a buffer and a window to be ran as a hook.
                 -- You can use "default_mappings = true" setup option
                 -- Or explicitly set keybindings

@@ -7,30 +7,31 @@
 --------------------------------------------------------------配置nvimvide界面
 ---------------------------------------界面配置
 ---
+
 ---
 --- 配置字体
 vim.o.guifont = "IntelOne_Mono_Light,Hack_Nerd_Font:h18"
 -- 配置剪贴板
 if vim.g.neovide then
-  vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
-  vim.keymap.set('v', '<D-c>', '"+y') -- Copy
-  vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
-  vim.keymap.set('v', '<D-v>', '"+P') -- Paste visual mode
-  vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
-  vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
+    vim.keymap.set('n', '<D-s>', ':w<CR>')      -- Save
+    vim.keymap.set('v', '<D-c>', '"+y')         -- Copy
+    vim.keymap.set('n', '<D-v>', '"+P')         -- Paste normal mode
+    vim.keymap.set('v', '<D-v>', '"+P')         -- Paste visual mode
+    vim.keymap.set('c', '<D-v>', '<C-R>+')      -- Paste command mode
+    vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
 end
 
 -- Allow clipboard copy paste in neovim
-vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true })
 -- 配置窗口
 -- local alpha = function()
 --     return string.format("%x", math.floor(255 * vim.g.transparency))
 -- end
 local alpha = function()
-  return string.format("%x", math.floor(255 * vim.g.neovide_transparency_point))
+    return string.format("%x", math.floor(255 * vim.g.neovide_transparency_point))
 end
 
 vim.g.neovide_scale_factor = 1
@@ -50,14 +51,14 @@ vim.g.neovide_transparency_point = 0.70
 vim.g.neovide_background_color = "#0f1117" .. alpha()
 -- Add keybinds to change transparency
 local change_transparency = function(delta)
-  vim.g.neovide_transparency_point = vim.g.neovide_transparency_point + delta
-  vim.g.neovide_background_color = "#0f1117" .. alpha()
+    vim.g.neovide_transparency_point = vim.g.neovide_transparency_point + delta
+    vim.g.neovide_background_color = "#0f1117" .. alpha()
 end
 vim.keymap.set({ "n", "v", "o" }, "<D-]>", function()
-  change_transparency(0.1)
+    change_transparency(0.1)
 end)
 vim.keymap.set({ "n", "v", "o" }, "<D-[>", function()
-  change_transparency(-0.1)
+    change_transparency(-0.1)
 end)
 -- 标题透明度
 --
@@ -132,7 +133,7 @@ lvim.builtin.lualine.options.theme = "auto"
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4 -- insert 2 spaces for a tab
 -- 设定开启时间
--- vim.opt.timeoutlen = 300
+vim.opt.timeoutlen = 2000
 
 local hop = require('hop')
 local directions = require('hop.hint').HintDirection
@@ -166,7 +167,7 @@ lvim.keys.normal_mode["<leader>r"] = "<Cmd>SymbolsOutline<CR>"
 lvim.keys.normal_mode["H"] = "<Cmd>BufferLineCyclePrev<cr>"
 lvim.keys.normal_mode["L"] = "<Cmd>BufferLineCycleNext<cr>"
 
-lvim. keys.normal_mode["U"] = "<C-R>"
+lvim.keys.normal_mode["U"] = "<C-R>"
 
 require("lvim.dap-config.daps")
 
@@ -180,13 +181,24 @@ dap.configurations.go = {
         program = function ()
             return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
         end,
-        path = "/usr/local/go/bin/go";
         cwd = "${workspaceFolder}",
         stopAtEntry = true,
     }
 }
-dap.adapters.godbg= {
-    id = "godbg";
-    type = 'executable';
-    command = "/Users/xt/.local/share/nvim/mason/bin/go-debug-adapter";
+-- dap.adapters.godbg= {
+--     id = "godbg";
+--     type = 'executable';
+--     command = "/usr/bin/delv";
+-- }
+
+lvim.builtin.treesitter.matchup.enable = true
+
+lvim.builtin.which_key.mappings["t"] = {
+    name = " Diagnostics",
+    t = { "<cmd>TroubleToggle<cr>", "trouble" },
+    w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "workspace" },
+    d = { "<cmd>TroubleToggle document_diagnostics<cr>", "document" },
+    q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
+    l = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
+    r = { "<cmd>TroubleToggle lsp_references<cr>", "references" },
 }
