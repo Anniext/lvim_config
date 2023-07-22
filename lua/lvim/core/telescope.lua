@@ -58,7 +58,7 @@ function M.config()
       },
       file_ignore_patterns = {},
       path_display = { "smart" },
-      winblend = 0,
+      winblend = 10,
       border = {},
       borderchars = nil,
       color_devicons = true,

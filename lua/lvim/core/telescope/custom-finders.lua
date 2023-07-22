@@ -5,6 +5,7 @@ local _, finders = pcall(require, "telescope.finders")
 local _, pickers = pcall(require, "telescope.pickers")
 local _, sorters = pcall(require, "telescope.sorters")
 local _, themes = pcall(require, "telescope.themes")
+-- lvim.lazy.opts.install.colorscheme = "habamax"
 local _, actions = pcall(require, "telescope.actions")
 local _, previewers = pcall(require, "telescope.previewers")
 local _, make_entry = pcall(require, "telescope.make_entry")

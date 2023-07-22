@@ -1,6 +1,6 @@
 -- local require = require("lvim.utils.require").require
 local core_plugins = {
-    { "folke/lazy.nvim",   tag = "stable" },
+    { "folke/lazy.nvim",                 tag = "stable" },
     {
         "neovim/nvim-lspconfig",
         lazy = true,
@@ -12,6 +12,12 @@ local core_plugins = {
     --        require("nvim-dap-go").setup()
     --     end
     -- },
+    {
+        "folke/tokyonight.nvim",
+          lazy = false,
+          priority = 1000,
+          opts = {},
+    },
     {
         "tzachar/cmp-tabnine",
         build = "./install.sh",
@@ -195,7 +201,7 @@ local core_plugins = {
                 height = 15,              -- Height of the floating window
                 default_mappings = false, -- Bind default mappings
                 debug = false,            -- Print debug information
-                opacity = 90,             -- 0-100 opacity level of the floating window where 100 is fully transparent.
+                opacity = 5,              -- 0-100 opacity level of the floating window where 100 is fully transparent.
                 post_open_hook = nil,     -- A function taking two arguments, a buffer and a window to be ran as a hook.
                 -- You can use "default_mappings = true" setup option
                 -- Or explicitly set keybindings

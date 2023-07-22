@@ -7,7 +7,6 @@
 --------------------------------------------------------------配置nvimvide界面
 ---------------------------------------界面配置
 ---
-
 ---
 --- 配置字体
 vim.o.guifont = "IntelOne_Mono_Light,Hack_Nerd_Font:h18"
@@ -47,7 +46,7 @@ vim.opt.linespace = 0
 -- Helper function for transparency formatting
 -- Set transparency and background color (title bar color)
 vim.g.neovide_transparency = 0.0
-vim.g.neovide_transparency_point = 0.70
+vim.g.neovide_transparency_point = 0.80
 vim.g.neovide_background_color = "#0f1117" .. alpha()
 -- Add keybinds to change transparency
 local change_transparency = function(delta)
@@ -171,25 +170,6 @@ lvim.keys.normal_mode["U"] = "<C-R>"
 
 require("lvim.dap-config.daps")
 
-local dap = require('dap')
-
-dap.configurations.go = {
-    {
-        name = "launch file";
-        type = 'godbg';
-        request = 'launch';
-        program = function ()
-            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-        end,
-        cwd = "${workspaceFolder}",
-        stopAtEntry = true,
-    }
-}
--- dap.adapters.godbg= {
---     id = "godbg";
---     type = 'executable';
---     command = "/usr/bin/delv";
--- }
 
 lvim.builtin.treesitter.matchup.enable = true
 
@@ -202,3 +182,7 @@ lvim.builtin.which_key.mappings["t"] = {
     l = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
     r = { "<cmd>TroubleToggle lsp_references<cr>", "references" },
 }
+
+
+lvim.colorscheme = "tokyonight-storm"
+-- lvim.lazy.opts.install.colorscheme = "habamax"
