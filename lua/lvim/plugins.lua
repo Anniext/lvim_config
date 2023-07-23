@@ -14,28 +14,28 @@ local core_plugins = {
     -- },
     {
         "folke/tokyonight.nvim",
-          lazy = false,
-          priority = 1000,
-          opts = {},
+        lazy = false,
+        priority = 1000,
+        opts = {},
     },
-    {
-        "tzachar/cmp-tabnine",
-        build = "./install.sh",
-        dependencies = "hrsh7th/nvim-cmp",
-        event = "InsertEnter",
-    },
+    -- {
+    --     "tzachar/cmp-tabnine",
+    --     build = "./install.sh",
+    --     dependencies = "hrsh7th/nvim-cmp",
+    --     event = "InsertEnter",
+    -- },
     {
         "folke/trouble.nvim",
         cmd = "TroubleToggle",
     },
-    {
-        "iamcco/markdown-preview.nvim",
-        build = "cd app && npm install",
-        ft = "markdown",
-        config = function()
-            vim.g.mkdp_auto_start = 1
-        end,
-    },
+    -- {
+    --     "iamcco/markdown-preview.nvim",
+    --     build = "cd app && npm install",
+    --     ft = "markdown",
+    --     config = function()
+    --         vim.g.mkdp_auto_start = 1
+    --     end,
+    -- },
     -- {
     --     "felipec/vim-sanegx",
     --     event = "BufRead",
@@ -211,31 +211,31 @@ local core_plugins = {
             }
         end
     },
-    {
-        "ahmedkhalf/lsp-rooter.nvim",
-        event = "BufRead",
-        config = true
-    },
-    {
-        "Pocco81/auto-save.nvim",
-        config = function()
-            require("auto-save").setup()
-        end,
-    },
+    -- {
+    --     "ahmedkhalf/lsp-rooter.nvim",
+    --     event = "BufRead",
+    --     config = true
+    -- },
+    -- {
+    --     "Pocco81/auto-save.nvim",
+    --     config = function()
+    --         require("auto-save").setup()
+    --     end,
+    -- },
     -- You must install glow globally
     -- https://github.com/charmbracelet/glow
     -- yay -S glow
-    {
-        "npxbr/glow.nvim",
-        ft = { "markdown" },
-        -- build = "yay -S
-        config = function()
-            require("glow").setup({
-                style = "light",
-                width = 120,
-            })
-        end,
-    },
+    -- {
+    --     "npxbr/glow.nvim",
+    --     ft = { "markdown" },
+    --     -- build = "yay -S
+    --     config = function()
+    --         require("glow").setup({
+    --             style = "light",
+    --             width = 120,
+    --         })
+    --     end,
+    -- },
     {
         'simrat39/symbols-outline.nvim',
         config = function()
