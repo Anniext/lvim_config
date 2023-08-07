@@ -6,52 +6,20 @@ local core_plugins = {
         lazy = true,
         dependencies = { "mason-lspconfig.nvim", "nlsp-settings.nvim" },
     },
-    -- {
-    --     'leoluz/nvim-dap-go',
-    --     config = function ()
-    --        require("nvim-dap-go").setup()
-    --     end
-    -- },
-    {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {},
-    },
-    -- {
-    --     "tzachar/cmp-tabnine",
-    --     build = "./install.sh",
-    --     dependencies = "hrsh7th/nvim-cmp",
-    --     event = "InsertEnter",
-    -- },
     {
         "folke/trouble.nvim",
         cmd = "TroubleToggle",
     },
+    {
+        'kristijanhusak/vim-carbon-now-sh',
+    },
     -- {
-    --     "iamcco/markdown-preview.nvim",
-    --     build = "cd app && npm install",
-    --     ft = "markdown",
+    --     "andymass/vim-matchup",
+    --     event = "CursorMoved",
     --     config = function()
-    --         vim.g.mkdp_auto_start = 1
+    --         vim.g.matchup_matchparen_offscreen = { method = "popup" }
     --     end,
     -- },
-    -- {
-    --     "felipec/vim-sanegx",
-    --     event = "BufRead",
-    -- },
-    {
-        "ray-x/lsp_signature.nvim",
-        event = "BufRead",
-        config = function() require "lsp_signature".on_attach() end,
-    },
-    {
-        "andymass/vim-matchup",
-        event = "CursorMoved",
-        config = function()
-            vim.g.matchup_matchparen_offscreen = { method = "popup" }
-        end,
-    },
     {
         "sindrets/diffview.nvim",
         event = "BufRead",
@@ -78,8 +46,6 @@ local core_plugins = {
             })
         end,
     },
-    -- enable treesitter integration
-    -- lvim.builtin.treesitter.matchup.enable = true
     {
         "williamboman/mason-lspconfig.nvim",
         cmd = { "LspInstall", "LspUninstall" },
@@ -94,26 +60,6 @@ local core_plugins = {
         event = "User FileOpened",
         dependencies = "mason.nvim",
     },
-    -- {
-    --     "theHamsta/nvim-dap-virtual-text",
-    --     config = function()
-    --         require("nvim-dap-virtual-text").setup({
-    --             enabled = true,
-    --             enable_commands = true,
-    --             highlight_changed_variables = true,
-    --             highlight_new_as_changed = false,
-    --             show_stop_reason = true,
-    --             commented = false,
-    --             only_first_definition = true,
-    --             all_references = false,
-    --             filter_references_pattern = '<module',
-    --             virt_text_pos = 'eol',
-    --             all_frames = false,
-    --             virt_lines = false,
-    --             virt_text_win_col = nil
-    --         })
-    --     end
-    -- },
     { "tamago324/nlsp-settings.nvim",    cmd = "LspSettings", lazy = true },
     { "jose-elias-alvarez/null-ls.nvim", lazy = true },
     {
@@ -138,13 +84,6 @@ local core_plugins = {
         'phaazon/hop.nvim',
         config = true
     },
-    -- {
-    --     'nvimdev/lspsaga.nvim',
-    --     after = 'nvim-lspconfig',
-    --     config = function()
-    --         require('lspsaga').setup({})
-    --     end,
-    -- },
     {
         'wfxr/minimap.vim',
         build = "cargo install --locked code-minimap",
@@ -216,12 +155,12 @@ local core_plugins = {
     --     event = "BufRead",
     --     config = true
     -- },
-    -- {
-    --     "Pocco81/auto-save.nvim",
-    --     config = function()
-    --         require("auto-save").setup()
-    --     end,
-    -- },
+    {
+        "Pocco81/auto-save.nvim",
+        config = function()
+            require("auto-save").setup()
+        end,
+    },
     -- You must install glow globally
     -- https://github.com/charmbracelet/glow
     -- yay -S glow
@@ -244,7 +183,7 @@ local core_plugins = {
                 position = 'left',
                 auto_close = true,
                 auto_preview = true,
-                winblend = 30,
+                winblend = 20,
             })
         end,
     },
@@ -626,9 +565,9 @@ local core_plugins = {
         enabled = lvim.builtin.bigfile.active,
         event = { "FileReadPre", "BufReadPre", "User FileOpened" },
     },
-    {
-        "nvim-treesitter/nvim-treesitter-angular"
-    },
+    -- {
+    --     "nvim-treesitter/nvim-treesitter-angular"
+    -- },
 }
 
 local default_snapshot_path = join_paths(get_lvim_base_dir(), "snapshots", "default.json")

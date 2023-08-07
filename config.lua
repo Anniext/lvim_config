@@ -168,6 +168,8 @@ lvim.keys.normal_mode["L"] = "<Cmd>BufferLineCycleNext<cr>"
 
 lvim.keys.normal_mode["U"] = "<C-R>"
 
+lvim.keys.normal_mode["SH"] = "<Cmd>CarbonNowSh<CR>"
+
 require("lvim.dap-config.daps")
 
 
