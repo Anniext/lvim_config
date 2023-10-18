@@ -1,23 +1,16 @@
--- Example configs: https://github.com/LunarVim/starter.lvim
--- Video Tutorials: https://www.youtube.com/watch?v=sFA9kX-Ud_c&list=PLhoH5vyxr6QqGu0i7tt_XoVK9v-KvZ3m6
--- Forum: https://www.reddit.com/r/lunarvim/ Discord: https://discord.com/invite/Xb9B4Ny
-
-
-----------------------------------------------------------------------------------------------------------------
---------------------------------------------------------------配置nvimvide界面
+ -------------------------------------------------------------配置nvimvide界面
 ---------------------------------------界面配置
----
----
+-- -
 --- 配置字体
 vim.o.guifont = "IntelOne_Mono_Light,Hack_Nerd_Font:h18"
 -- 配置剪贴板
 if vim.g.neovide then
-    vim.keymap.set('n', '<D-s>', ':w<CR>')      -- Save
-    vim.keymap.set('v', '<D-c>', '"+y')         -- Copy
-    vim.keymap.set('n', '<D-v>', '"+P')         -- Paste normal mode
-    vim.keymap.set('v', '<D-v>', '"+P')         -- Paste visual mode
-    vim.keymap.set('c', '<D-v>', '<C-R>+')      -- Paste command mode
-    vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
+  vim.keymap.set('n', '<D-s>', ':w<CR>')      -- Save
+  vim.keymap.set('v', '<D-c>', '"+y')         -- Copy
+  vim.keymap.set('n', '<D-v>', '"+P')         -- Paste normal mode
+  vim.keymap.set('v', '<D-v>', '"+P')         -- Paste visual mode
+  vim.keymap.set('c', '<D-v>', '<C-R>+')      -- Paste command mode
+  vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
 end
 
 -- Allow clipboard copy paste in neovim
@@ -30,7 +23,7 @@ vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true 
 --     return string.format("%x", math.floor(255 * vim.g.transparency))
 -- end
 local alpha = function()
-    return string.format("%x", math.floor(255 * vim.g.neovide_transparency_point))
+  return string.format("%x", math.floor(255 * vim.g.neovide_transparency_point))
 end
 
 vim.g.neovide_scale_factor = 1
@@ -50,14 +43,14 @@ vim.g.neovide_transparency_point = 0.80
 vim.g.neovide_background_color = "#0f1117" .. alpha()
 -- Add keybinds to change transparency
 local change_transparency = function(delta)
-    vim.g.neovide_transparency_point = vim.g.neovide_transparency_point + delta
-    vim.g.neovide_background_color = "#0f1117" .. alpha()
+  vim.g.neovide_transparency_point = vim.g.neovide_transparency_point + delta
+  vim.g.neovide_background_color = "#0f1117" .. alpha()
 end
 vim.keymap.set({ "n", "v", "o" }, "<D-]>", function()
-    change_transparency(0.1)
+  change_transparency(0.1)
 end)
 vim.keymap.set({ "n", "v", "o" }, "<D-[>", function()
-    change_transparency(-0.1)
+  change_transparency(-0.1)
 end)
 -- 标题透明度
 --
@@ -75,7 +68,7 @@ vim.g.neovide_underline_automatic_scaling = false
 -- 背景主题
 vim.g.neovide_theme = 'auto'
 -- 打开自动全屏
-vim.g.neovide_fullscreen = false
+vim.g.neovide_fullscreen = true
 -- 窗口大小记忆
 vim.g.neovide_remember_window_size = true
 -- alt为mate
@@ -115,7 +108,6 @@ vim.g.neovide_cursor_vfx_particle_phase = 0.8
 vim.g.neovide_cursor_vfx_particle_curl = 1.2
 --
 --
---
 ----------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------配置快捷键
 --
@@ -128,63 +120,24 @@ lvim.transparent_window = true
 lvim.builtin.lualine.options.theme = "auto"
 -- 设定缩进
 --
---
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4 -- insert 2 spaces for a tab
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2 -- insert 2 spaces for a tab
 -- 设定开启时间
 vim.opt.timeoutlen = 2000
 
-local hop = require('hop')
-local directions = require('hop.hint').HintDirection
-vim.keymap.set('', 'f', function()
-    hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
-end, { remap = true })
-vim.keymap.set('', 'F', function()
-    hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
-end, { remap = true })
-vim.keymap.set('', 't', function()
-    hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
-end, { remap = true })
-vim.keymap.set('', 'T', function()
-    hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
-end, { remap = true })
-
-
-lvim.builtin.treesitter.rainbow.enable = true
-
-vim.cmd("let g:minimap_width = 25")
-vim.cmd("let g:minimap_auto_start = 1")
-vim.cmd("let g:minimap_auto_start_win_enter = 1")
-
-vim.opt.listchars:append "space:⋅"
-vim.opt.listchars:append "eol:↴"
-
-require("lvim.lsp.manager").setup("angularls")
-
 lvim.keys.normal_mode["<leader>r"] = "<Cmd>SymbolsOutline<CR>"
-
 lvim.keys.normal_mode["H"] = "<Cmd>BufferLineCyclePrev<cr>"
 lvim.keys.normal_mode["L"] = "<Cmd>BufferLineCycleNext<cr>"
-
 lvim.keys.normal_mode["U"] = "<C-R>"
-
 lvim.keys.normal_mode["SH"] = "<Cmd>CarbonNowSh<CR>"
+lvim.keys.normal_mode["<leader>m"] = "<Cmd>MinimapToggle<CR>"
+lvim.keys.normal_mode["<leader>."] = "<Cmd>Run<CR>"
+lvim.keys.normal_mode["<leader>o"] = "<Cmd>Openfinder<CR>"
+lvim.colorscheme = "tokyonight-storm"
 
 require("lvim.dap-config.daps")
-
-
-lvim.builtin.treesitter.matchup.enable = true
-
-lvim.builtin.which_key.mappings["t"] = {
-    name = " Diagnostics",
-    t = { "<cmd>TroubleToggle<cr>", "trouble" },
-    w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "workspace" },
-    d = { "<cmd>TroubleToggle document_diagnostics<cr>", "document" },
-    q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
-    l = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
-    r = { "<cmd>TroubleToggle lsp_references<cr>", "references" },
-}
-
-
-lvim.colorscheme = "tokyonight-storm"
--- lvim.lazy.opts.install.colorscheme = "habamax"
+require("lvim.lsp.manager").setup("angularls")
+require('plugins.compiler').setup()
+require('plugins.finder').setup()
+require('plugins.auto_toggle').setup()
+-- lvim.format_on_save.enabled = true
